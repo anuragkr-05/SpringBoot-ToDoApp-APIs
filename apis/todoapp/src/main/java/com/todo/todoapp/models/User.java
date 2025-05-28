@@ -1,5 +1,7 @@
 package com.todo.todoapp.models;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -54,4 +56,15 @@ public class User {
         message = "Phone number must be exactly 10 digits")
     @Column(nullable = false, unique = true, length = 10)
     private String phoneNo;
+
+    @Column(name = "is_verified")
+    @Builder.Default
+    private boolean isVerified = false;
+
+    @Column(name = "otp", length = 6)
+    private String otp;
+
+    @Column(name = "otp_generated_at")
+    private LocalDateTime otpGeneratedAt;
+
 }
