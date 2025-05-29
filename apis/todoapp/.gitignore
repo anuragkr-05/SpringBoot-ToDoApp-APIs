@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+## ignore application.properties file
+apis/todoapp/src/main/resources/application.properties
