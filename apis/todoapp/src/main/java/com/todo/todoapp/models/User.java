@@ -19,7 +19,7 @@ import lombok.ToString;
 
 
 @Entity
-@Table(name = "User")
+@Table(name = "todo_user")
 @Data
 @ToString(exclude = "password")
 @NoArgsConstructor

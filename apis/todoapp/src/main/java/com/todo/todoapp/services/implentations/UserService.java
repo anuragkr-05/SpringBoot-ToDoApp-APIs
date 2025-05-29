@@ -25,6 +25,9 @@ public class UserService implements UserServiceI{
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private EmailService emailService;
+
     @Override
     public void registerUser(UserRegistrationRequest userRegistrationRequest) {
 
@@ -35,6 +38,7 @@ public class UserService implements UserServiceI{
         this.checkUserExist(userRegistrationRequest.getUsername(), userRegistrationRequest.getEmailId());
 
         final String otp = this.generateOTP();
+        this.emailService.sendOTPEmail(userRegistrationRequest.getEmailId(), otp);
         User user = this.createUser(userRegistrationRequest, otp);
         this.userRepository.save(user);
     }
