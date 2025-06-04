@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import javax.validation.Valid;
 
 import com.todo.todoapp.dtos.OTPVerificationRequest;
 import com.todo.todoapp.dtos.UserRegistrationRequest;
@@ -19,11 +20,12 @@ public class AuthController {
     private UserServiceI userServiceI;
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody UserRegistrationRequest userRegistrationRequest) {
+    public ResponseEntity<String> registerUser(@Valid @RequestBody UserRegistrationRequest userRegistrationRequest) {
         userServiceI.registerUser(userRegistrationRequest);
         return ResponseEntity.ok("User registered successfully. Please check your email for OTP.");
     }
 
+    @PostMapping("/verifyotp")
     public ResponseEntity<String> verifyOTP(@RequestBody OTPVerificationRequest otpVerificationRequest){
 
         userServiceI.verifyOTP(otpVerificationRequest);
